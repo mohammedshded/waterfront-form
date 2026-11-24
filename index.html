@@ -41,24 +41,27 @@
   /* ---------- Hero ---------- */
   .hero{position:relative;overflow:hidden;background:var(--bg)}
   .hero::after{content:"";position:absolute;inset:auto 0 0 0;height:10px;background:var(--gold)}
-  .topbar{display:flex;align-items:center;justify-content:space-between;padding-top:20px;gap:12px}
-  .topbar .logos{height:54px;width:auto}
-  .ribbon{width:62px;height:auto;margin-top:-20px;flex:none}
-  .hero-body{display:grid;grid-template-columns:1fr;gap:8px;padding:18px 0 0;text-align:center;position:relative;z-index:2}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;margin:0 auto;padding:6px 14px;border:1px solid var(--gold);border-radius:999px;color:var(--gold);font-weight:700;font-size:14px;background:#fff8}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding-top:14px;gap:12px;position:relative}
+  .topbar .logos{height:42px;width:auto}
+  .ribbon{width:44px;height:auto;margin-top:-14px;flex:none}
+  @media (min-width:700px){ .ribbon{position:absolute;left:0;top:14px;margin:0} }
+  .hero-body{display:grid;grid-template-columns:1fr;gap:4px;padding:6px 0 0;text-align:center;position:relative;z-index:2}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;margin:0 auto;padding:4px 12px;border:1px solid var(--gold);border-radius:999px;color:var(--gold);font-weight:700;font-size:13px;background:#fff8}
   .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--gold);display:inline-block;animation:pulse 1.8s infinite}
-  @media (max-width:420px){ .eyebrow{font-size:12px;padding:5px 12px} .ribbon{width:48px} .topbar .logos{height:44px} }
+  @media (max-width:420px){ .eyebrow{font-size:11.5px;padding:4px 10px} .ribbon{width:38px} .topbar .logos{height:36px} }
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-  .ten{width:min(420px,78%);margin:14px auto 0}
-  .hero h1{font-size:clamp(24px,4.4vw,40px);font-weight:800;margin:10px 0 0;line-height:1.35}
+  .ten{width:min(250px,56%);margin:8px auto 0}
+  .hero h1{font-size:clamp(20px,3vw,30px);font-weight:800;margin:6px 0 0;line-height:1.35}
   .hero h1 span{color:var(--gold)}
-  .hero p.lead{margin:6px auto 0;max-width:620px;color:var(--ink-2);font-size:clamp(15px,2.2vw,18px)}
-  .laurels{width:min(640px,96%);margin:14px auto 0;opacity:.9}
-  .building{width:100%;margin-top:-6%;position:relative;z-index:1;pointer-events:none}
+  .hero p.lead{margin:2px auto 0;max-width:640px;color:var(--ink-2);font-size:clamp(14px,1.8vw,16px);line-height:1.6}
+  .laurels{width:min(500px,94%);margin:8px auto 0;opacity:.9}
+  .building{width:100%;height:clamp(120px,19vw,260px);object-fit:cover;object-position:center bottom;margin-top:-1%;position:relative;z-index:1;pointer-events:none}
 
   /* ---------- Facts strip ---------- */
   .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:28px 0 0}
   .fact{background:var(--card);padding:16px 12px;text-align:center}
+  .f-ico{width:40px;height:40px;margin:0 auto 8px;border-radius:12px;background:var(--gold-soft);color:var(--gold);display:grid;place-items:center}
+  @media (max-width:420px){ .f-ico{width:34px;height:34px;border-radius:10px;margin-bottom:6px} .f-ico svg{width:17px;height:17px} }
   .fact b{display:block;font-family:"Alexandria",sans-serif;font-size:clamp(20px,3.4vw,28px);color:var(--ink);line-height:1.2}
   .fact b small{font-size:.55em;color:var(--gold);font-weight:600}
   .fact span{color:var(--muted);font-size:14px}
@@ -66,7 +69,8 @@
   /* ---------- Layout ---------- */
   main{padding:28px 0 56px}
   .grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:start}
-  @media (min-width:960px){ .grid{grid-template-columns:1.35fr 1fr} .side{position:sticky;top:20px} }
+  .grid{max-width:760px;margin-inline:auto}
+  .facts{max-width:760px;margin-inline:auto}
 
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;box-shadow:0 10px 30px -18px rgba(56,52,53,.35)}
   @media (min-width:560px){ .card{padding:30px 28px} }
@@ -165,18 +169,6 @@
   .summary span{color:var(--muted)}
   .link-btn{margin-top:18px;background:none;border:0;color:var(--gold);font:inherit;font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
 
-  /* ---------- Side: awards ---------- */
-  .side .card{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .side h2{color:#fff}
-  .side .sub{color:#cfc8c2}
-  .awards{list-style:none;margin:0;padding:0;display:grid;gap:2px}
-  .awards li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #ffffff1a}
-  .awards li:last-child{border-bottom:0}
-  .awards .n{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--gold);color:var(--gold-2);display:grid;place-items:center;font-family:"Alexandria",sans-serif;font-size:13px;font-weight:700}
-  .awards .en{display:block;font-family:"Alexandria",sans-serif;font-weight:600;font-size:14px;color:var(--gold-2);direction:ltr;text-align:right;line-height:1.4}
-  .awards .ar{display:block;font-size:14px;color:#e7e1db;line-height:1.5}
-  .iap{margin-top:16px;padding-top:14px;border-top:1px solid #ffffff26;font-size:13px;color:#cfc8c2;line-height:1.6}
-  .iap b{color:#fff}
 
   footer{background:var(--ink);color:#bdb6b0;text-align:center;padding:22px 16px;font-size:13px}
   footer b{color:var(--gold-2)}
@@ -201,7 +193,6 @@
     </div>
 
     <div class="hero-body">
-      <span class="eyebrow"><i></i> الإيفنت الخاص بالووترفرونت · طرح جديد وجوائز أكثر</span>
       <img class="ten" src="assets/ten.png" alt="10 مو واحد">
       <h1>احجز بيتك بالمجمع الحاصل على <span>10 جوائز عالمية</span></h1>
       <p class="lead">مجمع الووترفرونت السكني ووحداته حصلت على عشر جوائز من <bdi style="white-space:nowrap">International Property Awards</bdi>. سجّل اسمك ورقمك وفريق المبيعات يتواصل وياك.</p>
@@ -215,9 +206,9 @@
   <div class="wrap">
 
     <div class="facts" aria-label="معلومات سريعة">
-      <div class="fact"><b>10</b><span>جوائز عالمية</span></div>
-      <div class="fact"><b>5 <small>مساحات</small></b><span>من 250 إلى 800 م²</span></div>
-      <div class="fact"><b>900 <small>مليون</small></b><span>الأسعار تبدأ من</span></div>
+      <div class="fact"><span class="f-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></span><b>10</b><span>جوائز عالمية</span></div>
+      <div class="fact"><span class="f-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7M3 3v7M21 21h-7M21 21v-7"/><path d="M3 3l7 7M21 21l-7-7"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="2 3"/></svg></span><b>5 <small>مساحات</small></b><span>من 250 إلى 800 م²</span></div>
+      <div class="fact"><span class="f-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><b>900 <small>مليون</small></b><span>الأسعار تبدأ من</span></div>
     </div>
 
     <div class="grid" style="margin-top:24px">
@@ -253,13 +244,6 @@
             </div>
           </fieldset>
 
-          <div class="price-note">
-            <div class="p-ico" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 4l9 6.5"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg>
-            </div>
-            <div>أسعار البيوت تبدأ من <b>900 مليون</b> دينار عراقي</div>
-          </div>
-
           <fieldset>
             <legend>طريقة الاستلام <span class="opt">(الفرق بخطة السداد)</span></legend>
             <div class="tiles handover">
@@ -282,7 +266,7 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/></svg>
                   </span>
                   <span class="t-title">استلام بعد فترة</span>
-                  <span class="t-desc">تقسيط مريح بخطة سداد تبدأ من 3 سنوات أو أكثر.</span>
+                  <span class="t-desc">تقسيط بخطة سداد تبدأ من 3 سنوات أو أكثر.</span>
                 </label>
               </div>
             </div>
@@ -335,27 +319,6 @@
           <button class="link-btn" type="button" id="againBtn">تقديم طلب ثاني</button>
         </div>
       </section>
-
-      <!-- ============ AWARDS ============ -->
-      <aside class="side">
-        <div class="card">
-          <h2>10 مو واحد</h2>
-          <p class="sub">الجوائز العشر اللي حصل عليها مشروع الووترفرونت وشركة نايتي ناين للتطوير العقاري.</p>
-          <ol class="awards">
-            <li><span class="n">1</span><div><span class="en">Apartment / Condominium Development</span><span class="ar">التميز في تطوير الشقق والمجمعات السكنية الفاخرة</span></div></li>
-            <li><span class="n">2</span><div><span class="en">Development Marketing</span><span class="ar">أفضل تسويق وتواصل عقاري للمشاريع الضخمة</span></div></li>
-            <li><span class="n">3</span><div><span class="en">Landscape Architecture</span><span class="ar">تصميم المساحات الخضراء والحدائق</span></div></li>
-            <li><span class="n">4</span><div><span class="en">Leisure Development</span><span class="ar">التميز في تطوير المرافق الترفيهية</span></div></li>
-            <li><span class="n">5</span><div><span class="en">Masterplan</span><span class="ar">أفضل مخطط رئيسي للمدن والمشاريع الكبرى</span></div></li>
-            <li><span class="n">6</span><div><span class="en">Mixed Use Development</span><span class="ar">التميز في المشاريع متعددة الاستخدامات</span></div></li>
-            <li><span class="n">7</span><div><span class="en">Office Interior</span><span class="ar">التصميم الداخلي المتميز للمقرات الرئيسية</span></div></li>
-            <li><span class="n">8</span><div><span class="en">Residential Development 20+ Units</span><span class="ar">التطوير السكني للمجمعات اللي تضم أكثر من 20 وحدة</span></div></li>
-            <li><span class="n">9</span><div><span class="en">Residential Property</span><span class="ar">التميز في العقارات السكنية الفاخرة (فيلا 4417)</span></div></li>
-            <li><span class="n">10</span><div><span class="en">Sustainable Residential Development</span><span class="ar">التطوير السكني المستدام والصديق للبيئة</span></div></li>
-          </ol>
-          <div class="iap"><b>International Property Awards</b> — تُعرف بـ«أوسكار العقارات»، تأسست عام 1993 بالمملكة المتحدة، وتُحكّم مشاريعها لجنة مستقلة تضم أكثر من 100 خبير عالمي.</div>
-        </div>
-      </aside>
     </div>
   </div>
 </main>
