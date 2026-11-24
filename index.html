@@ -141,8 +141,6 @@
   .price-note b{font-family:"Alexandria",sans-serif;font-size:18px;color:var(--gold-2)}
   .price-note div{line-height:1.5}
 
-  .consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2);margin:0 0 18px}
-  .consent input{margin-top:5px;accent-color:var(--gold);width:18px;height:18px;flex:none}
 
   .btn{
     width:100%;border:0;cursor:pointer;font-family:"Alexandria",sans-serif;font-weight:700;font-size:18px;color:#fff;background:var(--gold);
@@ -296,11 +294,6 @@
             </div>
           </fieldset>
 
-          <label class="consent">
-            <input type="checkbox" id="consent" checked>
-            <span>أوافق إن فريق مبيعات الووترفرونت يتواصل وياي على الرقم اللي كتبته بخصوص الحجز والإيفنت.</span>
-          </label>
-
           <button class="btn" type="submit" id="submitBtn">
             <span class="spinner" aria-hidden="true"></span>
             <span class="btn-text">أرسل طلب الحجز</span>
@@ -404,7 +397,7 @@ const CONFIG = {
       payment,
       payment_label: LABELS.payment[payment] || '',
       notes: form.notes.value.trim(),
-      consent: $('#consent').checked,
+      consent: true,
       source: qs.get('utm_source') || qs.get('src') || '',
       campaign: qs.get('utm_campaign') || '',
       submitted_at: new Date().toISOString()
@@ -475,7 +468,7 @@ const CONFIG = {
   });
 
   $('#againBtn').addEventListener('click', () => {
-    form.reset(); $('#consent').checked = true; syncHandover();
+    form.reset(); syncHandover();
     $('#success').classList.remove('show'); form.style.display = '';
     form.name.focus();
   });
