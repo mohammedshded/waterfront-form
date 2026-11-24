@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>حجز بيوت الووترفرونت</title>
-<meta name="description" content="استمارة حجز بيوت مجمع الووترفرونت السكني — طرح جديد وجوائز أكثر. مساحات 250 إلى 800 م²، والأسعار تبدأ من 900 مليون دينار.">
+<meta name="description" content="استمارة حجز بيوت مجمع الووترفرونت السكني — طرح جديد وجوائز أكثر. مساحات 250 إلى 600 م²، والأسعار تبدأ من 900 مليون دينار.">
 <meta name="theme-color" content="#383435">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,8 +102,7 @@
 
   /* option tiles */
   .tiles{display:grid;gap:10px}
-  .tiles.areas{grid-template-columns:repeat(3,1fr)}
-  @media (min-width:560px){ .tiles.areas{grid-template-columns:repeat(5,1fr)} }
+  .tiles.areas{grid-template-columns:repeat(4,1fr)}
   .tile{position:relative}
   .tile input{position:absolute;opacity:0;pointer-events:none}
   .tile label{
@@ -210,7 +209,7 @@
 
     <div class="facts" aria-label="معلومات سريعة">
       <div class="fact"><span class="f-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></span><b>10</b><span>جوائز عالمية</span></div>
-      <div class="fact"><span class="f-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7M3 3v7M21 21h-7M21 21v-7"/><path d="M3 3l7 7M21 21l-7-7"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="2 3"/></svg></span><b>5 <small>مساحات</small></b><span>من 250 إلى 800 م²</span></div>
+      <div class="fact"><span class="f-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7M3 3v7M21 21h-7M21 21v-7"/><path d="M3 3l7 7M21 21l-7-7"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="2 3"/></svg></span><b>4 <small>مساحات</small></b><span>من 250 إلى 600 م²</span></div>
       <div class="fact"><span class="f-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><b>900 <small>مليون</small></b><span>الأسعار تبدأ من</span></div>
     </div>
 
@@ -243,7 +242,6 @@
               <div class="tile"><input type="radio" name="area" id="a300" value="300"><label for="a300"><span class="area-num">300</span><span class="area-unit">م²</span></label></div>
               <div class="tile"><input type="radio" name="area" id="a400" value="400"><label for="a400"><span class="area-num">400</span><span class="area-unit">م²</span></label></div>
               <div class="tile"><input type="radio" name="area" id="a600" value="600"><label for="a600"><span class="area-num">600</span><span class="area-unit">م²</span></label></div>
-              <div class="tile"><input type="radio" name="area" id="a800" value="800"><label for="a800"><span class="area-num">800</span><span class="area-unit">م²</span></label></div>
             </div>
           </fieldset>
 
