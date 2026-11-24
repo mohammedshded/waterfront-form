@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حجز بيوت الووترفرونت</title>
+<meta name="description" content="استمارة حجز بيوت مجمع الووترفرونت السكني — طرح جديد وجوائز أكثر. مساحات 250 إلى 800 م²، والأسعار تبدأ من 900 مليون دينار.">
+<meta name="theme-color" content="#383435">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#383435;
+    --ink-2:#5b5657;
+    --muted:#8a8485;
+    --gold:#a98a62;
+    --gold-2:#c4a77f;
+    --gold-soft:#efe6da;
+    --bg:#f7f6f7;
+    --card:#ffffff;
+    --line:#e3dfda;
+    --danger:#b3412f;
+    --ok:#2f7a4f;
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Tajawal",system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:"Alexandria","Tajawal",sans-serif}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;background:var(--bg)}
+  .hero::after{content:"";position:absolute;inset:auto 0 0 0;height:10px;background:var(--gold)}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding-top:20px;gap:12px}
+  .topbar .logos{height:54px;width:auto}
+  .ribbon{width:62px;height:auto;margin-top:-20px;flex:none}
+  .hero-body{display:grid;grid-template-columns:1fr;gap:8px;padding:18px 0 0;text-align:center;position:relative;z-index:2}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;margin:0 auto;padding:6px 14px;border:1px solid var(--gold);border-radius:999px;color:var(--gold);font-weight:700;font-size:14px;background:#fff8}
+  .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--gold);display:inline-block;animation:pulse 1.8s infinite}
+  @media (max-width:420px){ .eyebrow{font-size:12px;padding:5px 12px} .ribbon{width:48px} .topbar .logos{height:44px} }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .ten{width:min(420px,78%);margin:14px auto 0}
+  .hero h1{font-size:clamp(24px,4.4vw,40px);font-weight:800;margin:10px 0 0;line-height:1.35}
+  .hero h1 span{color:var(--gold)}
+  .hero p.lead{margin:6px auto 0;max-width:620px;color:var(--ink-2);font-size:clamp(15px,2.2vw,18px)}
+  .laurels{width:min(640px,96%);margin:14px auto 0;opacity:.9}
+  .building{width:100%;margin-top:-6%;position:relative;z-index:1;pointer-events:none}
+
+  /* ---------- Facts strip ---------- */
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:28px 0 0}
+  .fact{background:var(--card);padding:16px 12px;text-align:center}
+  .fact b{display:block;font-family:"Alexandria",sans-serif;font-size:clamp(20px,3.4vw,28px);color:var(--ink);line-height:1.2}
+  .fact b small{font-size:.55em;color:var(--gold);font-weight:600}
+  .fact span{color:var(--muted);font-size:14px}
+
+  /* ---------- Layout ---------- */
+  main{padding:28px 0 56px}
+  .grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:start}
+  @media (min-width:960px){ .grid{grid-template-columns:1.35fr 1fr} .side{position:sticky;top:20px} }
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;box-shadow:0 10px 30px -18px rgba(56,52,53,.35)}
+  @media (min-width:560px){ .card{padding:30px 28px} }
+  .card h2{font-size:22px;margin:0 0 4px;font-weight:700}
+  .card .sub{margin:0 0 18px;color:var(--muted);font-size:15px}
+
+  /* ---------- Form ---------- */
+  fieldset{border:0;margin:0 0 22px;padding:0;min-width:0}
+  legend,.label{display:block;font-weight:700;font-size:16px;margin-bottom:10px;padding:0}
+  .req{color:var(--danger);margin-inline-start:2px}
+  .opt{color:var(--muted);font-weight:500;font-size:13px;margin-inline-start:4px}
+  .row2{display:grid;grid-template-columns:1fr;gap:14px}
+  @media (min-width:560px){ .row2{grid-template-columns:1fr 1fr} }
+  .field{display:flex;flex-direction:column}
+  .field label{font-weight:700;margin-bottom:6px}
+  input[type=text],input[type=tel],textarea{
+    width:100%;font:inherit;color:var(--ink);background:#fbfaf8;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;transition:border-color .15s, box-shadow .15s;
+  }
+  input[type=tel]{direction:ltr;text-align:right}
+  input::placeholder,textarea::placeholder{color:#b5afaa}
+  input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(169,138,98,.15);background:#fff}
+  .field.invalid input{border-color:var(--danger);box-shadow:0 0 0 4px rgba(179,65,47,.1)}
+  .err{color:var(--danger);font-size:13px;min-height:0;margin-top:4px;display:none}
+  .field.invalid .err{display:block}
+  textarea{min-height:84px;resize:vertical}
+
+  /* option tiles */
+  .tiles{display:grid;gap:10px}
+  .tiles.areas{grid-template-columns:repeat(3,1fr)}
+  @media (min-width:560px){ .tiles.areas{grid-template-columns:repeat(5,1fr)} }
+  .tile{position:relative}
+  .tile input{position:absolute;opacity:0;pointer-events:none}
+  .tile label{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;height:100%;
+    border:1.5px solid var(--line);border-radius:14px;background:#fbfaf8;padding:14px 8px;text-align:center;transition:all .15s;user-select:none;
+  }
+  .tile label:hover{border-color:var(--gold-2)}
+  .tile input:focus-visible + label{box-shadow:0 0 0 4px rgba(169,138,98,.25)}
+  .tile input:checked + label{border-color:var(--gold);background:var(--gold-soft);box-shadow:inset 0 0 0 1px var(--gold)}
+  .area-num{font-family:"Alexandria",sans-serif;font-weight:700;font-size:22px;line-height:1.1;direction:ltr}
+  .area-unit{color:var(--muted);font-size:13px}
+
+  .tiles.handover{grid-template-columns:1fr}
+  @media (min-width:560px){ .tiles.handover{grid-template-columns:1fr 1fr} }
+  .tile.big label{align-items:flex-start;text-align:right;padding:16px;gap:6px}
+  .tile.big .t-ico{width:38px;height:38px;border-radius:10px;background:var(--ink);color:#fff;display:grid;place-items:center;margin-bottom:4px}
+  .tile.big input:checked + label .t-ico{background:var(--gold)}
+  .tile.big .t-title{font-family:"Alexandria",sans-serif;font-weight:700;font-size:17px}
+  .tile.big .t-desc{color:var(--ink-2);font-size:14px;line-height:1.55}
+  .tile.big .t-check{position:absolute;top:14px;left:14px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);background:#fff;display:grid;place-items:center}
+  .tile.big input:checked + label .t-check{border-color:var(--gold);background:var(--gold)}
+  .tile.big input:checked + label .t-check::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
+
+  .sub-options{margin-top:12px;padding:14px;border:1px dashed var(--gold-2);border-radius:14px;background:#fffdf9;display:none}
+  .sub-options.show{display:block;animation:fade .2s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .sub-options .label{font-size:15px;margin-bottom:8px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip input{position:absolute;opacity:0;pointer-events:none}
+  .chip{position:relative}
+  .chip label{display:inline-block;cursor:pointer;padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:15px;transition:all .15s}
+  .chip input:checked + label{background:var(--ink);border-color:var(--ink);color:#fff}
+  .chip input:focus-visible + label{box-shadow:0 0 0 4px rgba(169,138,98,.25)}
+  .hint{color:var(--muted);font-size:13px;margin:8px 0 0}
+
+  .price-note{display:flex;gap:12px;align-items:center;background:var(--ink);color:#fff;border-radius:14px;padding:14px 16px;margin:0 0 22px}
+  .price-note .p-ico{flex:none;width:40px;height:40px;border-radius:10px;background:var(--gold);display:grid;place-items:center}
+  .price-note b{font-family:"Alexandria",sans-serif;font-size:18px;color:var(--gold-2)}
+  .price-note div{line-height:1.5}
+
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2);margin:0 0 18px}
+  .consent input{margin-top:5px;accent-color:var(--gold);width:18px;height:18px;flex:none}
+
+  .btn{
+    width:100%;border:0;cursor:pointer;font-family:"Alexandria",sans-serif;font-weight:700;font-size:18px;color:#fff;background:var(--gold);
+    padding:16px 20px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .1s, background .15s, box-shadow .15s;
+    box-shadow:0 12px 24px -12px rgba(169,138,98,.8);
+  }
+  .btn:hover{background:#9a7b54}
+  .btn:active{transform:translateY(1px)}
+  .btn[disabled]{opacity:.7;cursor:wait}
+  .spinner{width:18px;height:18px;border:2.5px solid #fff6;border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+  .btn.loading .spinner{display:block}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .form-msg{margin-top:12px;font-size:14px;color:var(--danger);display:none;text-align:center}
+  .form-msg.show{display:block}
+
+  /* success */
+  .success{display:none;text-align:center;padding:12px 0}
+  .success.show{display:block;animation:fade .3s ease}
+  .success .ok-ico{width:72px;height:72px;margin:6px auto 12px;border-radius:50%;background:var(--gold-soft);display:grid;place-items:center;color:var(--gold)}
+  .success h2{font-size:24px}
+  .summary{margin:16px auto 0;max-width:380px;text-align:right;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .summary div{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:15px}
+  .summary div:last-child{border-bottom:0}
+  .summary span{color:var(--muted)}
+  .link-btn{margin-top:18px;background:none;border:0;color:var(--gold);font:inherit;font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+
+  /* ---------- Side: awards ---------- */
+  .side .card{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .side h2{color:#fff}
+  .side .sub{color:#cfc8c2}
+  .awards{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+  .awards li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #ffffff1a}
+  .awards li:last-child{border-bottom:0}
+  .awards .n{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--gold);color:var(--gold-2);display:grid;place-items:center;font-family:"Alexandria",sans-serif;font-size:13px;font-weight:700}
+  .awards .en{display:block;font-family:"Alexandria",sans-serif;font-weight:600;font-size:14px;color:var(--gold-2);direction:ltr;text-align:right;line-height:1.4}
+  .awards .ar{display:block;font-size:14px;color:#e7e1db;line-height:1.5}
+  .iap{margin-top:16px;padding-top:14px;border-top:1px solid #ffffff26;font-size:13px;color:#cfc8c2;line-height:1.6}
+  .iap b{color:#fff}
+
+  footer{background:var(--ink);color:#bdb6b0;text-align:center;padding:22px 16px;font-size:13px}
+  footer b{color:var(--gold-2)}
+
+  .setup-banner{display:none;background:#fff3cd;color:#6b5200;border-bottom:1px solid #f0d98a;padding:10px 16px;text-align:center;font-size:14px}
+  .setup-banner.show{display:block}
+
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }
+</style>
+</head>
+<body>
+
+<div class="setup-banner" id="setupBanner">
+  وضع التجربة: الاستمارة بعد ما مربوطة بمكان يستلم الطلبات. عدّل <code>CONFIG</code> داخل الملف قبل النشر.
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <img class="logos" src="assets/logos.png" alt="Waterfront | Ninety Nine">
+      <img class="ribbon" src="assets/ribbon.png" alt="Arabian Property Awards — Award Winner 2026-2027">
+    </div>
+
+    <div class="hero-body">
+      <span class="eyebrow"><i></i> الإيفنت الخاص بالووترفرونت · طرح جديد وجوائز أكثر</span>
+      <img class="ten" src="assets/ten.png" alt="10 مو واحد">
+      <h1>احجز بيتك بالمجمع الحاصل على <span>10 جوائز عالمية</span></h1>
+      <p class="lead">مجمع الووترفرونت السكني ووحداته حصلت على عشر جوائز من <bdi style="white-space:nowrap">International Property Awards</bdi>. سجّل اسمك ورقمك وفريق المبيعات يتواصل وياك.</p>
+      <img class="laurels" src="assets/laurels.png" alt="شعارات الجوائز العشر">
+    </div>
+  </div>
+  <img class="building" src="assets/building.jpg" alt="بيوت مجمع الووترفرونت السكني">
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="facts" aria-label="معلومات سريعة">
+      <div class="fact"><b>10</b><span>جوائز عالمية</span></div>
+      <div class="fact"><b>5 <small>مساحات</small></b><span>من 250 إلى 800 م²</span></div>
+      <div class="fact"><b>900 <small>مليون</small></b><span>الأسعار تبدأ من</span></div>
+    </div>
+
+    <div class="grid" style="margin-top:24px">
+      <!-- ============ FORM ============ -->
+      <section class="card" id="formCard">
+        <form id="bookingForm" novalidate>
+          <h2>استمارة الحجز</h2>
+          <p class="sub">الحقول المعلّمة بـ <span class="req">*</span> إجبارية.</p>
+
+          <fieldset>
+            <div class="row2">
+              <div class="field" id="f-name">
+                <label for="name">الاسم الكامل<span class="req">*</span></label>
+                <input type="text" id="name" name="name" autocomplete="name" placeholder="مثال: محمد علي حسن" required>
+                <div class="err">رجاءً اكتب اسمك الكامل.</div>
+              </div>
+              <div class="field" id="f-phone">
+                <label for="phone">رقم الهاتف<span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="07XX XXX XXXX" required>
+                <div class="err">اكتب رقم هاتف صحيح، مثل 07701234567.</div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>مساحة البيت <span class="opt">(اختر وحدة)</span></legend>
+            <div class="tiles areas">
+              <div class="tile"><input type="radio" name="area" id="a250" value="250"><label for="a250"><span class="area-num">250</span><span class="area-unit">م²</span></label></div>
+              <div class="tile"><input type="radio" name="area" id="a300" value="300"><label for="a300"><span class="area-num">300</span><span class="area-unit">م²</span></label></div>
+              <div class="tile"><input type="radio" name="area" id="a400" value="400"><label for="a400"><span class="area-num">400</span><span class="area-unit">م²</span></label></div>
+              <div class="tile"><input type="radio" name="area" id="a600" value="600"><label for="a600"><span class="area-num">600</span><span class="area-unit">م²</span></label></div>
+              <div class="tile"><input type="radio" name="area" id="a800" value="800"><label for="a800"><span class="area-num">800</span><span class="area-unit">م²</span></label></div>
+            </div>
+          </fieldset>
+
+          <div class="price-note">
+            <div class="p-ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 4l9 6.5"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg>
+            </div>
+            <div>أسعار البيوت تبدأ من <b>900 مليون</b> دينار عراقي</div>
+          </div>
+
+          <fieldset>
+            <legend>طريقة الاستلام <span class="opt">(الفرق بخطة السداد)</span></legend>
+            <div class="tiles handover">
+              <div class="tile big">
+                <input type="radio" name="handover" id="h-now" value="immediate">
+                <label for="h-now">
+                  <span class="t-check" aria-hidden="true"></span>
+                  <span class="t-ico" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m10.85 12.15 8.4-8.4"/><path d="m18 5 2 2"/><path d="m15 8 2 2"/></svg>
+                  </span>
+                  <span class="t-title">استلام وسكن مباشر</span>
+                  <span class="t-desc">تستلم المفتاح وتسكن فوراً. الدفع كاش أو نص كاش.</span>
+                </label>
+              </div>
+              <div class="tile big">
+                <input type="radio" name="handover" id="h-later" value="deferred">
+                <label for="h-later">
+                  <span class="t-check" aria-hidden="true"></span>
+                  <span class="t-ico" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/></svg>
+                  </span>
+                  <span class="t-title">استلام بعد فترة</span>
+                  <span class="t-desc">تقسيط مريح بخطة سداد تبدأ من 3 سنوات أو أكثر.</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="sub-options" id="sub-now" aria-live="polite">
+              <span class="label">طريقة الدفع</span>
+              <div class="chips">
+                <div class="chip"><input type="radio" name="payment_now" id="p-cash" value="cash"><label for="p-cash">كاش</label></div>
+                <div class="chip"><input type="radio" name="payment_now" id="p-half" value="half_cash"><label for="p-half">نص كاش</label></div>
+              </div>
+            </div>
+
+            <div class="sub-options" id="sub-later" aria-live="polite">
+              <span class="label">مدة خطة السداد</span>
+              <div class="chips">
+                <div class="chip"><input type="radio" name="payment_later" id="p-3" value="plan_3y"><label for="p-3">3 سنوات</label></div>
+                <div class="chip"><input type="radio" name="payment_later" id="p-3plus" value="plan_3y_plus"><label for="p-3plus">أكثر من 3 سنوات</label></div>
+              </div>
+              <p class="hint">تفاصيل الأقساط يوضحها لك فريق المبيعات حسب المساحة.</p>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <div class="field">
+              <label for="notes">ملاحظات <span class="opt">(اختياري)</span></label>
+              <textarea id="notes" name="notes" placeholder="وقت مناسب للاتصال، أسئلة، أو أي شي تحب تضيفه"></textarea>
+            </div>
+          </fieldset>
+
+          <label class="consent">
+            <input type="checkbox" id="consent" checked>
+            <span>أوافق إن فريق مبيعات الووترفرونت يتواصل وياي على الرقم اللي كتبته بخصوص الحجز والإيفنت.</span>
+          </label>
+
+          <button class="btn" type="submit" id="submitBtn">
+            <span class="spinner" aria-hidden="true"></span>
+            <span class="btn-text">أرسل طلب الحجز</span>
+          </button>
+          <div class="form-msg" id="formMsg" role="alert"></div>
+        </form>
+
+        <!-- success -->
+        <div class="success" id="success" role="status" aria-live="polite">
+          <div class="ok-ico" aria-hidden="true">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h2>وصل طلبك، شكراً <span id="sName"></span></h2>
+          <p class="sub" style="margin:0">فريق مبيعات الووترفرونت راح يتواصل وياك قريباً على رقمك.</p>
+          <div class="summary" id="summary"></div>
+          <button class="link-btn" type="button" id="againBtn">تقديم طلب ثاني</button>
+        </div>
+      </section>
+
+      <!-- ============ AWARDS ============ -->
+      <aside class="side">
+        <div class="card">
+          <h2>10 مو واحد</h2>
+          <p class="sub">الجوائز العشر اللي حصل عليها مشروع الووترفرونت وشركة نايتي ناين للتطوير العقاري.</p>
+          <ol class="awards">
+            <li><span class="n">1</span><div><span class="en">Apartment / Condominium Development</span><span class="ar">التميز في تطوير الشقق والمجمعات السكنية الفاخرة</span></div></li>
+            <li><span class="n">2</span><div><span class="en">Development Marketing</span><span class="ar">أفضل تسويق وتواصل عقاري للمشاريع الضخمة</span></div></li>
+            <li><span class="n">3</span><div><span class="en">Landscape Architecture</span><span class="ar">تصميم المساحات الخضراء والحدائق</span></div></li>
+            <li><span class="n">4</span><div><span class="en">Leisure Development</span><span class="ar">التميز في تطوير المرافق الترفيهية</span></div></li>
+            <li><span class="n">5</span><div><span class="en">Masterplan</span><span class="ar">أفضل مخطط رئيسي للمدن والمشاريع الكبرى</span></div></li>
+            <li><span class="n">6</span><div><span class="en">Mixed Use Development</span><span class="ar">التميز في المشاريع متعددة الاستخدامات</span></div></li>
+            <li><span class="n">7</span><div><span class="en">Office Interior</span><span class="ar">التصميم الداخلي المتميز للمقرات الرئيسية</span></div></li>
+            <li><span class="n">8</span><div><span class="en">Residential Development 20+ Units</span><span class="ar">التطوير السكني للمجمعات اللي تضم أكثر من 20 وحدة</span></div></li>
+            <li><span class="n">9</span><div><span class="en">Residential Property</span><span class="ar">التميز في العقارات السكنية الفاخرة (فيلا 4417)</span></div></li>
+            <li><span class="n">10</span><div><span class="en">Sustainable Residential Development</span><span class="ar">التطوير السكني المستدام والصديق للبيئة</span></div></li>
+          </ol>
+          <div class="iap"><b>International Property Awards</b> — تُعرف بـ«أوسكار العقارات»، تأسست عام 1993 بالمملكة المتحدة، وتُحكّم مشاريعها لجنة مستقلة تضم أكثر من 100 خبير عالمي.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <b>Baghdad Waterfront</b> · نايتي ناين للتطوير العقاري
+</footer>
+
+<script>
+/* =========================================================
+   CONFIG — وين توصل الطلبات
+   endpoint : رابط Web App مال Google Apps Script (شوف google-sheet-script.gs)
+              أو أي رابط يستقبل POST بصيغة JSON.
+   whatsapp : (اختياري) رقم واتساب المبيعات بالصيغة الدولية بدون + مثل 9647701234567
+              إذا ماكو endpoint، الطلب ينفتح كرسالة واتساب للرقم هذا.
+   ========================================================= */
+const CONFIG = {
+  endpoint: "https://script.google.com/macros/s/AKfycbwmDvf8y_iWj7G3KuUTwoAq4EEMB17cSIf0H1WSMKRS4T_buYUOlTbnYNzptvhpyRs/exec",
+  whatsapp: ""
+};
+
+(function(){
+  const $ = (s, r=document) => r.querySelector(s);
+  const form = $('#bookingForm');
+  const btn = $('#submitBtn');
+  const msg = $('#formMsg');
+
+  if(!CONFIG.endpoint && !CONFIG.whatsapp) $('#setupBanner').classList.add('show');
+
+  const LABELS = {
+    handover: { immediate: 'استلام وسكن مباشر', deferred: 'استلام بعد فترة' },
+    payment:  { cash: 'كاش', half_cash: 'نص كاش', plan_3y: 'خطة سداد 3 سنوات', plan_3y_plus: 'خطة سداد أكثر من 3 سنوات' }
+  };
+
+  // ---- digits: Arabic-Indic / Persian -> Latin
+  const toLatin = s => s.replace(/[٠-٩]/g, d => d.charCodeAt(0) - 0x0660)
+                        .replace(/[۰-۹]/g, d => d.charCodeAt(0) - 0x06F0);
+
+  // Returns normalized phone or null. Iraqi mobiles -> 07XXXXXXXXX; other international numbers kept with +.
+  function normalizePhone(raw){
+    let s = toLatin(raw || '').replace(/[\s\-().]/g, '');
+    if(s.startsWith('00')) s = '+' + s.slice(2);
+    let m = s.match(/^(?:\+?964)?0?(7\d{9})$/);
+    if(m) return '0' + m[1];
+    if(/^\+[1-9]\d{7,14}$/.test(s)) return s;
+    return null;
+  }
+
+  // ---- handover sub-options
+  function syncHandover(){
+    const v = (form.handover.value || '');
+    $('#sub-now').classList.toggle('show', v === 'immediate');
+    $('#sub-later').classList.toggle('show', v === 'deferred');
+  }
+  form.querySelectorAll('input[name=handover]').forEach(r => r.addEventListener('change', syncHandover));
+
+  // ---- validation
+  function setInvalid(id, bad){ $('#'+id).classList.toggle('invalid', bad); }
+  function validate(){
+    const name = form.name.value.trim().replace(/\s+/g,' ');
+    const phone = normalizePhone(form.phone.value);
+    const nameBad = name.length < 3;
+    setInvalid('f-name', nameBad);
+    setInvalid('f-phone', !phone);
+    if(nameBad){ form.name.focus(); return null; }
+    if(!phone){ form.phone.focus(); return null; }
+    return { name, phone };
+  }
+  form.name.addEventListener('input', () => setInvalid('f-name', false));
+  form.phone.addEventListener('input', () => setInvalid('f-phone', false));
+
+  function collect(base){
+    const handover = form.handover.value || '';
+    const payment = handover === 'immediate' ? (form.payment_now.value || '')
+                  : handover === 'deferred'  ? (form.payment_later.value || '') : '';
+    const qs = new URLSearchParams(location.search);
+    return {
+      name: base.name,
+      phone: base.phone,
+      area: form.area.value ? Number(form.area.value) : '',
+      handover,
+      handover_label: LABELS.handover[handover] || '',
+      payment,
+      payment_label: LABELS.payment[payment] || '',
+      notes: form.notes.value.trim(),
+      consent: $('#consent').checked,
+      source: qs.get('utm_source') || qs.get('src') || '',
+      campaign: qs.get('utm_campaign') || '',
+      submitted_at: new Date().toISOString()
+    };
+  }
+
+  async function send(data){
+    if(CONFIG.endpoint){
+      // text/plain avoids a CORS preflight (works with Google Apps Script web apps)
+      await fetch(CONFIG.endpoint, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(data) });
+      return;
+    }
+    if(CONFIG.whatsapp){
+      const lines = [
+        'طلب حجز — الووترفرونت',
+        'الاسم: ' + data.name,
+        'الهاتف: ' + data.phone,
+        data.area ? 'المساحة: ' + data.area + ' م²' : '',
+        data.handover_label ? 'الاستلام: ' + data.handover_label : '',
+        data.payment_label ? 'الدفع: ' + data.payment_label : '',
+        data.notes ? 'ملاحظات: ' + data.notes : ''
+      ].filter(Boolean).join('\n');
+      window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(lines), '_blank');
+      return;
+    }
+    console.info('[Waterfront form] no endpoint configured — submission:', data);
+    await new Promise(r => setTimeout(r, 600));
+  }
+
+  function showSuccess(d){
+    $('#sName').textContent = d.name.split(' ')[0];
+    const rows = [
+      ['الاسم', d.name], ['الهاتف', d.phone],
+      ['المساحة', d.area ? d.area + ' م²' : '—'],
+      ['الاستلام', d.handover_label || '—'],
+      ['الدفع', d.payment_label || '—']
+    ];
+    const box = $('#summary'); box.innerHTML = '';
+    rows.forEach(([k,v]) => {
+      const div = document.createElement('div');
+      const a = document.createElement('span'); a.textContent = k;
+      const b = document.createElement('b'); b.textContent = v;
+      if(k === 'الهاتف'){ b.dir = 'ltr'; }
+      div.append(a,b); box.append(div);
+    });
+    form.style.display = 'none';
+    $('#success').classList.add('show');
+    $('#formCard').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    msg.classList.remove('show');
+    const base = validate();
+    if(!base) return;
+    const data = collect(base);
+    btn.disabled = true; btn.classList.add('loading');
+    try{
+      await send(data);
+      showSuccess(data);
+    }catch(err){
+      console.error(err);
+      msg.textContent = 'صار خلل بالإرسال، تأكد من الإنترنت وحاول مرة ثانية.';
+      msg.classList.add('show');
+    }finally{
+      btn.disabled = false; btn.classList.remove('loading');
+    }
+  });
+
+  $('#againBtn').addEventListener('click', () => {
+    form.reset(); $('#consent').checked = true; syncHandover();
+    $('#success').classList.remove('show'); form.style.display = '';
+    form.name.focus();
+  });
+})();
+</script>
+</body>
+</html>
